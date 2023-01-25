@@ -218,3 +218,78 @@ const data1 = [17, 21, 23];
 const data2 = [12, 5, -5, 0, 4];
 printForecast(data1);
 printForecast(data2);
+
+//guess the number
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+let score = 20;
+let highScore = 0;
+
+document.querySelector(".check").addEventListener("click", function () {
+  const guess = Number(document.querySelector(".guess").value);
+  console.log(guess, typeof guess);
+  if (!guess) {
+    document.querySelector(".message").textContent = "No Number";
+  } else if (guess === secretNumber) {
+    document.querySelector(".message").textContent = "Correct Number";
+
+    document.querySelector(".number").textContent = secretNumber;
+
+    document.querySelector("body").style.backgroundColor = "#60b347";
+
+    document.querySelector(".number").style.width = "30rem";
+
+    if (score > highScore) {
+      highScore = score;
+      document.querySelector(".highscore").textContent = highScore;
+    }
+  } else if (guess !== secretNumber) {
+    if (score > 1) {
+      document.querySelector(".message").textContent =
+        guess > secretNumber ? "Too High" : "Too Low";
+      score--;
+      document.querySelector(".score").textContent = score;
+    } else {
+      document.querySelector(".message").textContent = "You lost the game";
+    }
+  }
+});
+
+document.querySelector(".again").addEventListener("click", function () {
+  score = 20;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  document.querySelector(".message").textContent = "Start guessing...";
+  document.querySelector(".score").textContent = score;
+  document.querySelector(".number").textContent = "?";
+  document.querySelector("body").style.backgroundColor = " #222";
+  document.querySelector(".number").style.width = "15rem";
+  document.querySelector(".guess").value = "";
+});
+
+// modal functionality
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const btnCloseModal = document.querySelector(".close-modal");
+const btnShowModal = document.querySelectorAll(".show-modal");
+
+const openModal = function () {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
+
+const closeModal = function () {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
+
+for (let i = 0; i < btnShowModal.length; i++)
+  btnShowModal[i].addEventListener("click", openModal);
+
+btnCloseModal.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    closeModal();
+  }
+});
