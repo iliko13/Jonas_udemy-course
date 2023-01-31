@@ -293,3 +293,5 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+//Data structures
