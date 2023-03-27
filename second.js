@@ -826,7 +826,7 @@ console.log(passengerCorrect); //Iliko
 //ლოგინის სწორად დაწერა
 const loginEmail = "  Ilikokukava13@gmail.com";
 const lowerEmail = loginEmail.toLowerCase();
-const trimmedEmail = lowerEmail.trim();
+const trimmedEmail = lowerEmail.trim(); //გამოტოვებულ ადგილს ავსებს
 console.log(trimmedEmail);
 //მაგრამ ამის ერთ ზოლში ჩაწერა შესაძლებელია
 const normalEmail = loginEmail.toLowerCase().trim();
