@@ -1,5 +1,153 @@
 "use strict";
+//ინტერვალი
+function tqvi() {
+  console.log("tqvi");
+}
+setTimeout(tqvi, 2000); //2 წამში გამოგიტანს ამ წარწერას
+setInterval(tqvi, 3000); //ყოველ 3 წამში გამოიძახებს ამ ფუნცქაიას
+
+//DOM
+document.addEventListener(scroll, function () {
+  let scrollValue = scrollY;
+  console.log(scrollValue); //ამით ჩვენ ვნახავთ როცა ჩამოვსქროლავთ როგორ შეიჩვლება Y ღერძზე მონაცემები
+});
+
+//local storage
+localStorage.setItem("Name", "Ilia"); //ვაწესებთ მონაცემებს(keys, values)
+//getItem ვიძახებთ, ხოლო removeItem ვშლით
+
+//Break and continue
+const cars = ["mersedes", "BMW", "Audi"];
+
+// for (let car of cars) {
+//   if (car === "BMW") break; // ამ დროს შეჩერდება
+//   console.log(car);
+// }
+for (let car of cars) {
+  if (car === "Audi") continue; //ამ დროს მოცემულ მნიშვნელობას გამოტოვებს და ისე გააგრძლებს იტერაციას
+  console.log(car);
+}
+
+//callback
+
+const aa = (callback) => {
+  setTimeout(() => {
+    console.log("me var ilo");
+    callback();
+  }, 2000);
+};
+const bb = () => {
+  console.log("me var iliko");
+};
+aa(bb);
+
+//Set
+const manqanebi = new Set(["BMW", "Mersedes", "Audi"]);
+manqanebi.add("BMW"); //ამას სეტი არ დაბეჭდავს რადგან სეტი ინახავს უნიკალურ მონაცემებს
+manqanebi.delete("Mersedes"); //წაშლა
+manqanebi.forEach((car) => {
+  console.log(car);
+});
+console.log(manqanebi.has("BMW")); //აქვს თუ არა ეს მნიშვნელობა სეტს
+console.log(manqanebi.size); //რამდენ მნიშვნელობას მოიცავს
+
+//კლასები
+class First1234 {
+  constructor(Name, Year) {
+    this.name = Name;
+    this.year = Year;
+
+    console.log(`My ${this.name} is ilia, I'm ${this.year}`);
+  }
+}
+class Second12345 extends First1234 {}
+const hero = new Second12345("iliko", 25);
+console.log(hero);
+// class, (inheritance, and super)
+class Third extends First1234 {
+  constructor(Name, Year, Country) {
+    super(Name, Year);
+    this.country = Country;
+
+    console.log(
+      `Hi, I'm ${this.name}, I'm ${this.year} old, and I'm from ${this.country}`
+    );
+  }
+}
+
+const mySeld = new Third("iliko", 1997, "Georgia");
+console.log(mySeld);
+///
+//შეცდომების საპოვნელად
+//try and catch
+try {
+  console.log("Hello");
+} catch (error) {
+  console.log("oops" + error);
+}
+//async function
+//promise; //ეს ეგრეწოდებული პირობაა რომელიც მომავლიდან აკეტებს გადაწყვეტილებას და თუ წარმატებულია გაუშვებს რესოლვით თუ არადა რეჯექთით
+const lotteryPromise1 = new Promise(function (resolve, reject) {
+  console.log("Lotter draw is happening");
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve("You Win"); //თუ სწორია მაშინ ეს დაიწერება
+    } else {
+      reject(new Error("You lost your money")); // თუ არასწორია მაშინ ეს
+    }
+  }, 2000);
+});
+lotteryPromise1
+  .then((res) => console.log(res)) //თუ სწორია მაშინ რესოლვში მიცემს უფლებას დაწეროს
+  .catch((err) => console.error(err)); //თუ არადა რეჯექთთან გადაინაცვლებს
+
+function f1() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("This is called function");
+    }, 3000);
+  });
+}
+
+async function f2() {
+  console.log("...waiting");
+  const result = await f1(); //სანამ await მისგან პასუხს არ მიიღებს ელოდება მას
+  console.log(result);
+}
+
+f2();
+
+//API
+const URL = ""; //აქ ჩავწერთ API -ის კოდს
+
+function GetAPI() {
+  fetch(URL)
+    .then((response) => response.json)
+    .then((data) => console.log(data)) //როცა ინდექსით ვცდილობთ მივაწოდოთ მაშინ უნდა დავუწეროთ დეითას წინ JSON.stringify()
+    .catch((error) => console.log(error));
+}
+GetAPI();
+
+//მოდულები, გამოიყენება ორი ჯავაკსრიპტის ფაილის დაკავშირებაში
+export function GetName(name) {
+  //ეს უნდა ეწეროს პირველ ჯავაკსრიპტის ფაილში
+  return name;
+}
+//მეორე ჯავაკსრიპტის ფაილში კი უნდა დავწეროთ
+import { GetName } from "/main.js";
+console.log(GetName("ilia"));
+//ამ დროს უნდა დავწეროთ ორივე index.html ფიაილში სქრიპტში შემდეგი:
+//<script src='main.js' defer type = 'module'></script>
+
+//ან ასევე შეგვიძია default-ით პირდაპირ იმპორტს მივუწეროთ გვერდით მისი სახელი , მაგ:
+//const car = {model: 'BMW};
+//export default car;
+//import car;∂
+
+//
+
 //1
+
 const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
 const averageDolphins = calcAverage(85, 54, 41);
 const averageKoalas = calcAverage(23, 34, 27);
@@ -1478,7 +1626,7 @@ acc1.deposit(250);
 acc1.withdraw(140);
 console.log(acc1);
 
-//Asynchronous js
+//Asynchronous js ასინქტრონული ფუნცქია იმით განსხვავდება ჩვეულებრივისგან რომ ის ელოდება წინამდებარე ფუნცქიას შესრულებას და მერე ახდენს სხვა პროცედურებს
 
 // const request = new XMLHttpRequest();
 // request.open("GET", "https://restcountries.com/v3.1/name/georgia"); //API
@@ -1518,21 +1666,37 @@ console.log(acc1);
 
 // getCountryData("georgia");
 
-//promise
-// const lotteryPromise = new Promise(function (resolve, reject) {
-//   console.log("Lotter draw is happening");
-//   setTimeout(function () {
-//     if (Math.random() >= 0.5) {
-//       resolve("You Win");
-//     } else {
-//       reject(new Error("You lost your money"));
-//     }
-//   }, 2000);
-// });
+//promise; //ეს ეგრეწოდებული პირობაა რომელიც მომავლიდან აკეტებს გადაწყვეტილებას და თუ წარმატებულია გაუშვებს რესოლვით თუ არადა რეჯექთით
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log("Lotter draw is happening");
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve("You Win"); //თუ სწორია მაშინ ეს დაიწერება
+    } else {
+      reject(new Error("You lost your money")); // თუ არასწორია მაშინ ეს
+    }
+  }, 2000);
+});
 
-// lotteryPromise
-//   .then((res) => console.log(res))
-//   .catch((err) => console.error(err));
+lotteryPromise
+  .then((res) => console.log(res)) //თუ სწორია მაშინ რესოლვში მიცემს უფლებას დაწეროს
+  .catch((err) => console.error(err)); //თუ არადა რეჯექთთან გადაინაცვლებს
+//
+function f1() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("This is called function");
+    }, 3000);
+  });
+}
+
+async function f2() {
+  console.log("...waiting");
+  const result = await f1();
+  console.log(result);
+}
+
+f2();
 
 //
 const whereAmI = async function (country) {
