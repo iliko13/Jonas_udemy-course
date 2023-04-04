@@ -56,51 +56,7 @@
 //     document.write(movie.stars[i] + "</br>")
 // }
 
-//dom
+const arr = [2, 3, 4];
 
-//interval
-
-//for of
-
-//for in
-
-//for loop
-
-//local storage
-
-//set
-
-//class
-
-//promise
-
-//async function
-
-//api
-
-//inheritance
-
-//მოდულები
-
-//დესტრუცქცია
-
-//callback
-// const aa = (callback) => {
-//   setTimeout(() => {
-//     console.log("me var ilo");
-//     callback();
-//   }, 2000);
-// };
-// const bb = () => {
-//   console.log("me var iliko");
-// };
-// aa(bb);
-const movements33 = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-const eurToUsd = 1.1;
-
-const movementUSD = movements33.map(function (mov) {
-  return mov * eurToUsd;
-});
-console.log(movements33);
-console.log(movementUSD);
+let [a, b, c] = arr;
+console.log(a, b, c);

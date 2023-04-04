@@ -1,4 +1,27 @@
 "use strict";
+//მასივების მეთოდები
+const absde = [4, 5, 7];
+console.log(absde.toString()); //gასტრინგავს
+console.log(absde.join("&")); //ყოველი ელემენტის შორის დაწერს ამაზე
+absde.pop();
+const defg = [5, 6, 7];
+console.log(absde.toString()); //gასტრინგავს
+console.log(absde.join("&")); //ყოველი ელემენტის შორის დაწერს ამაზე
+console.log(absde.pop()); //ბოლო ელემენტს გამოსახავს
+absde.push(9); //ეს უმატებს ელემენტს
+console.log(absde);
+absde.shift(); // პირველი ელემენტს შლის
+absde.unshift(1); //ეს პირველ ელემენტის წინ დაუწერს
+const allWords = absde.concat(defg); //აერთიანებს მასივებს
+console.log(allWords);
+absde.splice(2, 0, 7); //ამ დროს მეორე ელემენტის მერე წაიშალა 0 ელემენტი მაგრამ დაემატა 7 -ე ელემენტი
+absde.slice(1, 3); // ეს ნიშნავს რომ პირველი ელემენტის ჩათვლით ამოიჭრება მესამე ელემენტამდე
+
+//filter
+const ricxvebi = [1, 2, 3, 4, 5, 6];
+const xutzeNaklebi = ricxvebi.filter((number) => {
+  return number < 5;
+});
 //ინტერვალი
 function tqvi() {
   console.log("tqvi");
@@ -85,6 +108,13 @@ try {
 } catch (error) {
   console.log("oops" + error);
 }
+
+//spred
+const cipri1 = [1, 2, 3];
+const cipri2 = [4, 5, 6];
+const yvela = [...cipri1, ...cipri2];
+console.log(yvela);
+
 //async function
 //promise; //ეს ეგრეწოდებული პირობაა რომელიც მომავლიდან აკეტებს გადაწყვეტილებას და თუ წარმატებულია გაუშვებს რესოლვით თუ არადა რეჯექთით
 const lotteryPromise1 = new Promise(function (resolve, reject) {
@@ -100,6 +130,7 @@ const lotteryPromise1 = new Promise(function (resolve, reject) {
 lotteryPromise1
   .then((res) => console.log(res)) //თუ სწორია მაშინ რესოლვში მიცემს უფლებას დაწეროს
   .catch((err) => console.error(err)); //თუ არადა რეჯექთთან გადაინაცვლებს
+//თუ ორი პრომისია მაშინ ბოლოს დავწერთ Promise.all([promise1, promise2]).then().catch
 
 function f1() {
   return new Promise((resolve) => {
@@ -127,6 +158,22 @@ function GetAPI() {
     .catch((error) => console.log(error));
 }
 GetAPI();
+
+//რორგორ მივწვდეთ html-ში API-დან მოცემულ ინფორმაციას
+const getUsers = async () => {
+  try {
+    const ul = documelnt.querySelector("ul");
+    const users = await fetch("URL").then((_) => _.json());
+    users.foreach((user) => {
+      const li = document.createElement("li");
+      li.innerHTML = `${user.name} $(user.surName)`;
+      ul.appendChild(li);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+getUsers();
 
 //მოდულები, გამოიყენება ორი ჯავაკსრიპტის ფაილის დაკავშირებაში
 export function GetName(name) {
