@@ -1753,3 +1753,34 @@ const whereAmI = async function (country) {
 };
 whereAmI("georgia");
 console.log("first"); //აქ პირველი ეს გამოვა რადგან ბექგრაუნდზეა გაშვებული ასინქრონული ფუნცქია ფეტჩის საშუალებით
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  R E A C T >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>></>
+//js გამეორება
+//spread and res
+const person = {
+  name: "ilia",
+};
+
+const age = {
+  ...person,
+  year: 25,
+};
+//rest
+console.log(age);
+
+const filter = (...ages) => {
+  return ages.filter((el) => el === 1);
+};
+console.log(filter(1, 2, 3, 4, 5));
+
+//destructuring
+const numbers = [1, 2, 3];
+let [num1, num2] = numbers;
+console.log(num1, num2);
+
+//array
+const numbers123 = [1, 2, 3];
+const doubleIt = numbers123.map((el) => {
+  return el * 2;
+});
+console.log(doubleIt);

@@ -56,7 +56,8 @@
 //     document.write(movie.stars[i] + "</br>")
 // }
 
-const arr = [2, 3, 4];
-
-let [a, b, c] = arr;
-console.log(a, b, c);
+const numbers = [1, 2, 3, 4, 5];
+console.log(numbers);
+console.log(numbers.toString());
+console.log(numbers.join("; "));
+console.log(numbers.pop());
